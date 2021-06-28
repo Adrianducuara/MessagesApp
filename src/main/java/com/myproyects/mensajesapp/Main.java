@@ -6,6 +6,7 @@
 package com.myproyects.mensajesapp;
 
 import java.sql.Connection;
+import java.util.Scanner;
 
 
 /**
@@ -14,10 +15,42 @@ import java.sql.Connection;
  */
 public class Main {
     public static void main(String[] args) {
-        ConnectionDB connection = new ConnectionDB();
-        try(Connection cnx = connection.get_connection()){
-        }catch(Exception e){
-            System.out.println(e);
-        }
+        
+        Scanner sc = new Scanner(System.in);
+        
+        int option = 0;
+        
+        do{
+            System.out.println("-------------------------");
+            System.out.println("Aplicación de mensajes");
+            System.out.println("1. Crear mensaje");
+            System.out.println("2. Listar mensajes");
+            System.out.println("3. Editar un mensaje");
+            System.out.println("4. Eliminar mensaje");
+            System.out.println("5. Salir");
+            
+            //we read the option of the user
+            option = sc.nextInt();
+            
+            switch(option){
+                case 1:
+                    MessageService.createMessage();
+                    break;
+                case 2:
+                    MessageService.listMessage();
+                    break;
+                case 3:
+                    MessageService.updateMessage();
+                    break;
+                case 4:
+                    MessageService.deleteMessage();
+                    break;
+                default:
+                    break;
+            }
+            
+            
+        }while(option != 5);
+        
     }
 }
